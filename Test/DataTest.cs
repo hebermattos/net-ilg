@@ -1,6 +1,5 @@
 ﻿using Domain.Data;
 using NUnit.Framework;
-using System.Collections.Generic;
 
 namespace Test
 {
@@ -34,6 +33,10 @@ namespace Test
 
             Assert.AreEqual(id, sale.SaleID);
             Assert.AreEqual(name, sale.SalesmanName);
+
+            Assert.AreEqual("2", sale.Itens[1].ItemID);
+            Assert.AreEqual("30", sale.Itens[1].ItemQuantity);
+            Assert.AreEqual("2.50", sale.Itens[1].ItemPrice);
         }
     }
 }

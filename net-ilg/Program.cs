@@ -1,8 +1,5 @@
 ﻿using App;
-using Autofac;
-using Infra;
 using System;
-using System.IO;
 
 namespace net_ilg
 {
@@ -12,7 +9,7 @@ namespace net_ilg
         {         
             FolderService.WatchFolder();
 
-            Console.WriteLine("watching...");
+            Console.WriteLine("watching folder...");
             Console.ReadLine();
         }
     }
