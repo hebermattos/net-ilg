@@ -22,8 +22,8 @@ namespace Infra
                 using (var streamReader = new StreamReader(fileStream, Encoding.UTF8, true, bufferSize))
                 {
                     string line;
-                    while ((line = streamReader.ReadLine()) != null)
-                        fullRawData.Add(line);
+                    while ((line = streamReader.ReadLine()) != null)                    
+                        fullRawData.Add(line.Trim());                    
                 }
             });
 

@@ -43,6 +43,5 @@ namespace App
             _dataRepository.SaveReport(processedOrderedReportDatas);
         }
 
-
     }
 }
