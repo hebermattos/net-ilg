@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Domain;
+using System.IO;
 
 namespace Infra
 {
@@ -11,7 +12,9 @@ namespace Infra
     {
         public List<Data> GetData()
         {
-            throw new NotImplementedException();
+            string text = File.ReadAllText(@"c:\file.txt", Encoding.UTF8);
+
+            return new List<Data>();
         }
     }
 }
