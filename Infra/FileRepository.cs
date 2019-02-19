@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Text;
 using System.IO;
+using System.Threading.Tasks;
+using System.Collections.Concurrent;
 
 namespace Infra
 {
@@ -8,12 +10,12 @@ namespace Infra
     {
         public IEnumerable<string> GetData()
         {
-            var fullRawData = new List<string>();
+            var fullRawData = new ConcurrentBag<string>();
 
-            foreach (string file in Directory.EnumerateFiles(FolderPath.GetInFolderPath(), "*.dat"))
+            const int BufferSize = 32;
+
+            Parallel.ForEach(Directory.EnumerateFiles(FolderPath.GetInFolderPath(), "*.dat"), (file) =>
             {
-                const int BufferSize = 128;
-
                 using (var fileStream = File.OpenRead(file))
                 using (var streamReader = new StreamReader(fileStream, Encoding.UTF8, true, BufferSize))
                 {
@@ -21,8 +23,8 @@ namespace Infra
                     while ((line = streamReader.ReadLine()) != null)
                         fullRawData.Add(line);
                 }
+            });
 
-            }
 
             return fullRawData;
         }

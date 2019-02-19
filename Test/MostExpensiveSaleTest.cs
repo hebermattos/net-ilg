@@ -1,5 +1,4 @@
-﻿using Domain;
-using Domain.Reports;
+﻿using Domain.Reports;
 using NUnit.Framework;
 using System.Collections.Generic;
 
@@ -10,7 +9,7 @@ namespace Test
     {
         private static object[] data = {
                                   new object[] {new List<string> { "003ç10ç[1-10-100,2-30-2.50,3-40-3.10]çDiego" } ,"10"},
-                                   new object[] {new List<string> { "003ç10ç[1-10-100,2-30-2.50,3-40-3.10]çDiego", "003ç11ç[1-10-101,2-30-2.50,3-40-3.10]çDiego" } ,"11"},
+                                   new object[] {new List<string> { "003ç10ç[1-10-100,2-30-2.50,3-40-3.10]çDiego", "003ç11ç[1-10-101,2-30-2.50,3-40-3.10]çPedro" } ,"11"},
     };
 
         [Test, TestCaseSource("data")]

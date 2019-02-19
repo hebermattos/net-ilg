@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Infra
 {
@@ -14,6 +10,7 @@ namespace Infra
             var homePath = Environment.GetEnvironmentVariable("HOMEPATH");
 
             var folderPath = homeDrive + "\\" + homePath + "\\Data";
+
             return folderPath;
         }
 
