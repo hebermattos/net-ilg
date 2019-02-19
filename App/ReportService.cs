@@ -4,6 +4,7 @@ using Infra;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -40,8 +41,13 @@ namespace App
 
             var processedOrderedReportDatas = processedReportDatas.OrderBy(x => x);
 
-            System.IO.File.WriteAllLines(FolderPath.GetOutFolderPath() + "\\" + GenerateFileName() + ".done.data", processedOrderedReportDatas);
+            SaveReport(processedOrderedReportDatas);
 
+        }
+
+        private static void SaveReport(IOrderedEnumerable<string> processedOrderedReportDatas)
+        {
+            File.WriteAllLines(FolderPath.GetOutFolderPath() + "\\" + GenerateFileName() + ".done.data", processedOrderedReportDatas);
         }
 
         private static string GenerateFileName()

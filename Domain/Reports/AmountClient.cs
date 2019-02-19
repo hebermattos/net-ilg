@@ -15,12 +15,12 @@ namespace Domain
         }
 
         protected override string Generate(IEnumerable<string> rawData)
-        {
-            var rawCustomers = rawData.Where(x => x.StartsWith("002"));
-
-            var customers = rawCustomers.Select(x => new Customer(x));
-
-            var customersCount = customers.GroupBy(x => x.CNPJ).Count();
+        {          
+            var customersCount = rawData
+                .Where(x => x.StartsWith("002"))
+                .Select(x => new Customer(x))
+                .GroupBy(x => x.CNPJ)
+                .Count();
 
             return customersCount.ToString();
         }

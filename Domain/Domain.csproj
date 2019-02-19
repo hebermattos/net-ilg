@@ -44,6 +44,7 @@
     <Compile Include="Data\Sale.cs" />
     <Compile Include="Data\Salesman.cs" />
     <Compile Include="Data\Customer.cs" />
+    <Compile Include="Reports\WorstSalesmanEver.cs" />
     <Compile Include="Reports\AmountSalesman.cs" />
     <Compile Include="Reports\AmountClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

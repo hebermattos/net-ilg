@@ -19,11 +19,9 @@ namespace Domain.Reports
 
         protected override string Generate(IEnumerable<string> rawData)
         {
-            var rawSales = rawData.Where(x => x.StartsWith("003"));
-
-            var sales = rawSales.Select(x => new Sale(x));
-
-            var mostExpensiveSale = sales
+            var mostExpensiveSale = rawData
+                .Where(x => x.StartsWith("003"))
+                .Select(x => new Sale(x))
                 .OrderByDescending(x => x.CalculateValue())
                 .First()
                 .SaleID;
