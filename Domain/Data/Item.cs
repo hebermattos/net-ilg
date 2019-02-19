@@ -2,8 +2,6 @@
 {
     public class Item
     {
-        private string x;
-
         public Item(string rawItemData)
         {
             var data = rawItemData.Split('-');
