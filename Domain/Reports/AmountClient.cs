@@ -1,9 +1,6 @@
 ﻿using Domain.Data;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain
 {
@@ -17,16 +14,11 @@ namespace Domain
             }
         }
 
-        protected override string Generate(List<string> rawData)
+        protected override string Generate(IEnumerable<string> rawData)
         {
             var rawCustomers = rawData.Where(x => x.StartsWith("002"));
 
-            var customers = new List<Customer>();
-
-            foreach (var rawCustomer in rawCustomers)
-            {
-                customers.Add(new Customer(rawCustomer));
-            }
+            var customers = rawCustomers.Select(x => new Customer(x));
 
             var customersCount = customers.GroupBy(x => x.CNPJ).Count();
 

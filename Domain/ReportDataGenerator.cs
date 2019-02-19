@@ -6,9 +6,9 @@ namespace Domain
     {
         public abstract string Key { get; }
 
-        protected abstract string Generate(List<string> rawData);
+        protected abstract string Generate(IEnumerable<string> rawData);
 
-        public ReportData GetData(List<string> rawData)
+        public ReportData GetData(IEnumerable<string> rawData)
         {
             var value = Generate(rawData);
 

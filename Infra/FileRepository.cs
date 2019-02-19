@@ -1,32 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Text;
-using System.Threading.Tasks;
-using Domain;
 using System.IO;
 
 namespace Infra
 {
     public class FileRepository : IDataRepository
     {
-        public List<string> GetData()
+        public IEnumerable<string> GetData()
         {
             var fullRawData = new List<string>();
 
             foreach (string file in Directory.EnumerateFiles(FolderPath.GetInFolderPath(), "*.dat"))
             {
-                var lines = File.ReadAllText(file).Split(
-                         new[] { Environment.NewLine },
-                         StringSplitOptions.None
-                     );
+                const int BufferSize = 128;
 
-                fullRawData.AddRange(lines);
+                using (var fileStream = File.OpenRead(file))
+                using (var streamReader = new StreamReader(fileStream, Encoding.UTF8, true, BufferSize))
+                {
+                    string line;
+                    while ((line = streamReader.ReadLine()) != null)
+                        fullRawData.Add(line);
+                }
+
             }
 
             return fullRawData;
         }
-
-
     }
 }

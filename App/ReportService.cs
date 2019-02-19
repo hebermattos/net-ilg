@@ -1,7 +1,11 @@
 ﻿using Domain;
+using Domain.Reports;
 using Infra;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace App
 {
@@ -21,19 +25,22 @@ namespace App
             var processors = new List<ReportDataGenerator>
             {
                 new AmountClient(),
-                new AmountSalesman()
+                new AmountSalesman(),
+                new MostExpensiveSale(),
             };
 
-            var processedReportDatas = new List<string>();
+            var processedReportDatas = new ConcurrentBag<string>();
 
-            foreach (var processor in processors)
+            Parallel.ForEach(processors, (processor) =>
             {
                 var data = processor.GetData(rawReportDatas);
 
                 processedReportDatas.Add(data.Key + ": " + data.Value);
-            }
+            });
 
-            System.IO.File.WriteAllLines(FolderPath.GetOutFolderPath() + "\\" + GenerateFileName() + ".done.data", processedReportDatas);
+            var processedOrderedReportDatas = processedReportDatas.OrderBy(x => x);
+
+            System.IO.File.WriteAllLines(FolderPath.GetOutFolderPath() + "\\" + GenerateFileName() + ".done.data", processedOrderedReportDatas);
 
         }
 
