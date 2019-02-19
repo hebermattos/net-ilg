@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +19,20 @@ namespace Domain
 
         protected override string Generate(List<string> rawData)
         {
-            return "123";
+            var rawCustomers = rawData.Where(x => x.StartsWith("002"));
+
+            var customers = new List<Customer>();
+
+            foreach (var rawCustomer in rawCustomers)
+            {
+                var customerData = rawCustomer.Split('ç');
+
+                customers.Add(new Customer(rawCustomer));
+            }
+
+            var customersCount = customers.GroupBy(x => x.CNPJ).Count();
+
+            return customersCount.ToString();
         }
     }
 }
