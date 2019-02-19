@@ -48,8 +48,8 @@
     <Compile Include="Reports\AmountSalesman.cs" />
     <Compile Include="Reports\AmountClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ReportData.cs" />
-    <Compile Include="ReportDataGenerator.cs" />
+    <Compile Include="Reports\base\ReportData.cs" />
+    <Compile Include="Reports\base\ReportDataGenerator.cs" />
     <Compile Include="Reports\MostExpensiveSale.cs" />
   </ItemGroup>
   <ItemGroup />

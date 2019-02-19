@@ -1,4 +1,5 @@
 ﻿using Domain.Data;
+using Domain.Reports;
 using System.Collections.Generic;
 using System.Linq;
 

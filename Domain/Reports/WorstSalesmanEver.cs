@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Domain
+namespace Domain.Reports
 {
     public class WorstSalesmanEver : ReportDataGenerator
     {

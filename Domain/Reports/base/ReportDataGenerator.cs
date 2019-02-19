@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Domain
+namespace Domain.Reports
 {
     public abstract class ReportDataGenerator
     {
