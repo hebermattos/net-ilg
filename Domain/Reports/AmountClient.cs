@@ -25,8 +25,6 @@ namespace Domain
 
             foreach (var rawCustomer in rawCustomers)
             {
-                var customerData = rawCustomer.Split('ç');
-
                 customers.Add(new Customer(rawCustomer));
             }
 

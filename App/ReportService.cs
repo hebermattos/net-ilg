@@ -20,7 +20,8 @@ namespace App
 
             var processors = new List<ReportDataGenerator>
             {
-                new AmountClient()
+                new AmountClient(),
+                new AmountSalesman()
             };
 
             var processedReportDatas = new List<string>();
