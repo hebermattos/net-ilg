@@ -2,7 +2,7 @@
 using Autofac;
 using Infra;
 
-namespace net_ilg
+namespace App
 {
     public static class DependencyInjection
     {
