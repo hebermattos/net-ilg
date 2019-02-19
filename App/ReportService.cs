@@ -1,10 +1,8 @@
 ﻿using Domain;
 using Domain.Reports;
 using Infra;
-using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 

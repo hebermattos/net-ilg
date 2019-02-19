@@ -19,9 +19,7 @@ namespace Domain.Data
                 .Split(',');
 
             Itens = rawItemData.Select(x => new Item(x)).ToList();
-
             SaleID = saleData[1];
-
             SalesmanName = saleData[3];
         }
 
