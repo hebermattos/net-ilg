@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Domain.Data
 {
-    class Sale
+    public class Sale
     {
         public Sale(string rawSale)
         {

@@ -2,7 +2,7 @@
 
 namespace Domain.Data
 {
-    class Customer
+    public class Customer
     {
         public string CNPJ { get; set; }
         public string Name { get; set; }
