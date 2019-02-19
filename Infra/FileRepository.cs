@@ -14,20 +14,23 @@ namespace Infra
         {
             var fullRawData = new ConcurrentBag<string>();
 
-            var bufferSize = Convert.ToInt32(ConfigurationManager.AppSettings["bufferSize"]);
-
             Parallel.ForEach(Directory.EnumerateFiles(FolderPath.GetInFolderPath(), "*.dat"), (file) =>
             {
-                using (var fileStream = File.OpenRead(file))
-                using (var streamReader = new StreamReader(fileStream, Encoding.UTF8, true, bufferSize))
-                {
-                    string line;
-                    while ((line = streamReader.ReadLine()) != null)                    
-                        fullRawData.Add(line.Trim());                    
-                }
+                ExtractFileData(file, fullRawData);
             });
 
             return fullRawData;
+        }
+
+        private static void ExtractFileData(string file, ConcurrentBag<string> fullRawData)
+        {
+            using (var fileStream = File.OpenRead(file))
+            using (var streamReader = new StreamReader(fileStream, Encoding.UTF8, true, Convert.ToInt32(ConfigurationManager.AppSettings["bufferSize"])))
+            {
+                string line;
+                while ((line = streamReader.ReadLine()) != null)
+                    fullRawData.Add(line.Trim());
+            }
         }
 
         public void SaveReport(IEnumerable<string> report)
