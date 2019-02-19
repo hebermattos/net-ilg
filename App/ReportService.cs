@@ -42,18 +42,9 @@ namespace App
 
             var processedOrderedReportDatas = processedReportDatas.OrderBy(x => x);
 
-            SaveReport(processedOrderedReportDatas);
-
+            _dataRepository.SaveReport(processedOrderedReportDatas);
         }
 
-        private static void SaveReport(IOrderedEnumerable<string> processedOrderedReportDatas)
-        {
-            File.WriteAllLines(FolderPath.GetOutFolderPath() + "\\" + GenerateFileName() + ".done.data", processedOrderedReportDatas);
-        }
 
-        private static string GenerateFileName()
-        {
-            return "report_" + (int)(DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalSeconds;
-        }
     }
 }

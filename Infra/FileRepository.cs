@@ -27,8 +27,25 @@ namespace Infra
                 }
             });
 
-
             return fullRawData;
+        }
+
+        public void SaveReport(IEnumerable<string> report)
+        {
+            StringBuilder stringbuilder = new StringBuilder();
+
+            foreach (var data in report)
+            {
+                stringbuilder.Append(data);
+                stringbuilder.Append(Environment.NewLine);
+            }
+
+            File.AppendAllText(FolderPath.GetOutFolderPath() + "\\" + GenerateFileName() + ".done.dat", stringbuilder.ToString());
+        }
+
+        private static string GenerateFileName()
+        {
+            return "report_" + (int)(DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalSeconds;
         }
     }
 }
