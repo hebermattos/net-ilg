@@ -28,6 +28,7 @@ namespace App
                 new AmountClient(),
                 new AmountSalesman(),
                 new MostExpensiveSale(),
+                new WorstSalesmanEver(),
             };
 
             var processedReportDatas = new ConcurrentBag<string>();

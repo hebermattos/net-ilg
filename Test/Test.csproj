@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="WorstSalesmanEverTest.cs" />
     <Compile Include="MostExpensiveSaleTest.cs" />
     <Compile Include="AmountSalesmanTest.cs" />
     <Compile Include="AmountClientTest.cs" />
