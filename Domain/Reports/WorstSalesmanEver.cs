@@ -30,9 +30,7 @@ namespace Domain.Reports
                 .SalesmanName;
 
             return saleman;
-        }
-
-        
+        }        
     }
 
     struct SalesmanTotalSale
