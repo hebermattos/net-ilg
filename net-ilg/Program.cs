@@ -22,8 +22,8 @@ namespace net_ilg
 
             using (var scope = Container.BeginLifetimeScope())
             {
-                var writer = scope.Resolve<ReportService>();
-                writer.GenerateReport();
+                var report = scope.Resolve<ReportService>();
+                report.GenerateReport();
             }
         }
     }
