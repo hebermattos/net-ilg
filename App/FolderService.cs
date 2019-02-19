@@ -6,11 +6,12 @@ namespace App
 {
     public static class FolderService
     {
-        public static void WatchFolder()
+       public static FileSystemWatcher watcher = new FileSystemWatcher();
+
+        public static void WatchReportFolder()
         {
             DependencyInjection.CreateContainer();
-
-            FileSystemWatcher watcher = new FileSystemWatcher();
+          
             watcher.Path = FolderPath.GetInFolderPath();
             watcher.NotifyFilter = NotifyFilters.FileName | NotifyFilters.CreationTime | NotifyFilters.LastWrite;
             watcher.Filter = "*.dat";
@@ -18,6 +19,15 @@ namespace App
             watcher.Created += new FileSystemEventHandler(OnChanged);
 
             watcher.EnableRaisingEvents = true;
+        }
+
+        public static void StopWatch()
+        {
+            watcher.EnableRaisingEvents = false;
+
+            watcher.Changed -= new FileSystemEventHandler(OnChanged);
+
+            watcher.Dispose();
         }
 
         private static void OnChanged(object source, FileSystemEventArgs e)

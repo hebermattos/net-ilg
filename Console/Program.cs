@@ -7,7 +7,7 @@ namespace net_ilg
     {
         static void Main(string[] args)
         {         
-            FolderService.WatchFolder();
+            FolderService.WatchReportFolder();
 
             Console.WriteLine("watching folder...");
             Console.ReadLine();
