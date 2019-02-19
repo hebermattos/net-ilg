@@ -4,7 +4,7 @@ namespace Infra
 {
     public interface IDataRepository
     {
-        IEnumerable<string> GetData();
+        IEnumerable<string> GetRawData();
 
         void SaveReport(IEnumerable<string> report);
     }

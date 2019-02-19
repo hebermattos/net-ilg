@@ -1,5 +1,4 @@
-﻿using Domain;
-using Domain.Reports;
+﻿using Domain.Reports;
 using NUnit.Framework;
 using System.Collections.Generic;
 

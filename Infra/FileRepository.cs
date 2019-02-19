@@ -10,7 +10,7 @@ namespace Infra
 {
     public class FileRepository : IDataRepository
     {
-        public IEnumerable<string> GetData()
+        public IEnumerable<string> GetRawData()
         {
             var fullRawData = new ConcurrentBag<string>();
 

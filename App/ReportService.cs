@@ -21,7 +21,7 @@ namespace App
 
         public void GenerateReport()
         {
-            var rawReportDatas = _dataRepository.GetData();
+            var rawReportDatas = _dataRepository.GetRawData();
 
             var processors = new List<ReportDataGenerator>
             {
