@@ -1,5 +1,6 @@
 ﻿using Domain;
 using Infra;
+using System;
 using System.Collections.Generic;
 
 namespace App
@@ -31,7 +32,9 @@ namespace App
                 reportData.Add(data.Key + ": " + data.Value);
             }
 
-            System.IO.File.WriteAllLines(@"C:\Users\Public\TestFolder\WriteLines.txt", reportData);
+            var epoch = (int)(DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalSeconds;
+
+            System.IO.File.WriteAllLines(FolderPath.GetOutFolderPath() + "\\report_" + epoch + ".done.data", reportData);
 
         }
     }

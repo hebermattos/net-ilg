@@ -10,21 +10,23 @@ namespace Infra
 {
     public class FileRepository : IDataRepository
     {
-        public string GetData()
+        public List<string> GetData()
         {
-            var homeDrive = Environment.GetEnvironmentVariable("HOMEDRIVE");
-            var homePath = Environment.GetEnvironmentVariable("HOMEPATH");
+            var fullRawData = new List<string>();
 
-            var folderPath = homeDrive + "\\" + homePath + "\\Data\\In";
-
-            var fullRawData = new StringBuilder();
-
-            foreach (string file in Directory.EnumerateFiles(folderPath, "*.dat"))
+            foreach (string file in Directory.EnumerateFiles(FolderPath.GetInFolderPath(), "*.dat"))
             {
-                fullRawData.Append(File.ReadAllText(file));
+                var lines = File.ReadAllText(file).Split(
+                         new[] { Environment.NewLine },
+                         StringSplitOptions.None
+                     );
+
+                fullRawData.AddRange(lines);
             }
 
-            return fullRawData.ToString();
+            return fullRawData;
         }
+
+
     }
 }

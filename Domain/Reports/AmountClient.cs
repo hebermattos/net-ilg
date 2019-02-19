@@ -16,7 +16,7 @@ namespace Domain
             }
         }
 
-        protected override string Generate(string rawData)
+        protected override string Generate(List<string> rawData)
         {
             return "123";
         }

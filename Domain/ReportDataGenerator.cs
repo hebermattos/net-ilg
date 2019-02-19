@@ -10,9 +10,9 @@ namespace Domain
     {
         public abstract string Key { get; }
 
-        protected abstract string Generate(string rawData);
+        protected abstract string Generate(List<string> rawData);
 
-        public ReportData GetData(string rawData)
+        public ReportData GetData(List<string> rawData)
         {
             var value = Generate(rawData);
 
