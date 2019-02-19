@@ -5,6 +5,6 @@ namespace Infra
 {
     public interface IDataRepository
     {
-        List<Data> GetData();
+       string GetData();
     }
 }

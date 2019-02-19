@@ -1,10 +1,6 @@
 ﻿using Domain;
 using Infra;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace App
 {
@@ -19,16 +15,24 @@ namespace App
 
         public void GenerateReport()
         {
-            var datas = _dataRepository.GetData();
+            var rawDatas = _dataRepository.GetData();
 
-            var processedData = new List<ProcessedData>();
-
-            foreach (var data in datas)
+            var processors = new List<ReportDataGenerator>
             {
-                var result = data.ProcessData();
+                new AmountClient()
+            };
 
-                processedData.Add(result);
+            var reportData = new List<string>();
+
+            foreach (var processor in processors)
+            {
+                var data = processor.GetData(rawDatas);
+
+                reportData.Add(data.Key + ": " + data.Value);
             }
+
+            System.IO.File.WriteAllLines(@"C:\Users\Public\TestFolder\WriteLines.txt", reportData);
+
         }
     }
 }
