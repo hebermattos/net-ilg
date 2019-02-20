@@ -15,10 +15,12 @@ namespace net_ilg
                 var folderService = scope.Resolve<FolderService>();
 
                 folderService.WatchReportFolder();
-            }
 
-            Console.WriteLine("Report generator is executing. Press any key to exit...");
-            Console.ReadLine();
+                Console.WriteLine("Report generator is executing. Press any key to exit...");
+                Console.ReadLine();
+
+                folderService.StopWatchFolder();
+            }
         }
     }
 }
