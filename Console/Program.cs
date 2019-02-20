@@ -17,7 +17,7 @@ namespace net_ilg
                 folderService.WatchReportFolder();
             }
 
-            Console.WriteLine("watching folder...");
+            Console.WriteLine("Report generator is executing. Press any key to exit...");
             Console.ReadLine();
         }
     }

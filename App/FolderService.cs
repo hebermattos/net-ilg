@@ -1,5 +1,4 @@
-﻿using Autofac;
-using Infra;
+﻿using Infra;
 using System.IO;
 using System.Threading;
 
