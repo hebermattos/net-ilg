@@ -1,17 +1,25 @@
 ﻿using Autofac;
 using Infra;
 using System.IO;
+using System.Threading;
 
 namespace App
 {
-    public static class FolderService
+    public class FolderService
     {
-       public static FileSystemWatcher watcher = new FileSystemWatcher();
+        public FileSystemWatcher watcher = new FileSystemWatcher();
 
-        public static void WatchReportFolder()
+        private ReportService _reportService;
+
+        public FolderService(ReportService reportService)
+        {
+            _reportService = reportService;
+        }
+
+        public void WatchReportFolder()
         {
             DependencyInjection.CreateContainer();
-          
+
             watcher.Path = FolderPath.GetInFolderPath();
             watcher.NotifyFilter = NotifyFilters.FileName | NotifyFilters.CreationTime | NotifyFilters.LastWrite;
             watcher.Filter = "*.dat";
@@ -21,7 +29,7 @@ namespace App
             watcher.EnableRaisingEvents = true;
         }
 
-        public static void StopWatch()
+        public void StopWatchFolder()
         {
             watcher.EnableRaisingEvents = false;
 
@@ -30,14 +38,11 @@ namespace App
             watcher.Dispose();
         }
 
-        private static void OnChanged(object source, FileSystemEventArgs e)
+        private void OnChanged(object source, FileSystemEventArgs e)
         {
-            using (var scope = DependencyInjection.Container.BeginLifetimeScope())
-            {
-                var reportService = scope.Resolve<ReportService>();
+            Thread.Sleep(100);
 
-                reportService.GenerateReport();
-            }
+            _reportService.GenerateReport();
         }
     }
 }

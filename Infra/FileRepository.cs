@@ -47,12 +47,7 @@ namespace Infra
                 stringbuilder.Append(Environment.NewLine);
             }
 
-            File.AppendAllText(FolderPath.GetOutFolderPath() + "\\" + GenerateFileName() + ".done.dat", stringbuilder.ToString());
-        }
-
-        private static string GenerateFileName()
-        {
-            return "report_" + (int)(DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalSeconds;
+            File.WriteAllText(FolderPath.GetOutFolderPath() + "\\report.done.dat", stringbuilder.ToString());
         }
 
         private bool FileIsLocked(string file)

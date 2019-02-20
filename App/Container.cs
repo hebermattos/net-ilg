@@ -12,6 +12,7 @@ namespace App
         {
             var builder = new ContainerBuilder();
             builder.RegisterType<ReportService>();
+            builder.RegisterType<FolderService>();
             builder.RegisterType<FileRepository>().As<IDataRepository>();
             Container = builder.Build();
         }

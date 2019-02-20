@@ -1,16 +1,10 @@
 ﻿using App;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Linq;
+using Autofac;
 using System.ServiceProcess;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WindowsService
 {
+
     public partial class Service1 : ServiceBase
     {
         public Service1()
@@ -18,14 +12,26 @@ namespace WindowsService
             InitializeComponent();
         }
 
+        private FolderService folderService;
+        private ILifetimeScope scope;
+
         protected override void OnStart(string[] args)
         {
-            FolderService.WatchReportFolder();
+            DependencyInjection.CreateContainer();
+
+            scope = DependencyInjection.Container.BeginLifetimeScope();
+
+            folderService = scope.Resolve<FolderService>();
+
+            folderService.WatchReportFolder();
+
         }
 
         protected override void OnStop()
         {
-            FolderService.StopWatch();
+            folderService.StopWatchFolder();
+
+            scope.Dispose();
         }
     }
 }
