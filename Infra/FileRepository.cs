@@ -23,20 +23,6 @@ namespace Infra
             return fullRawData;
         }
 
-        private void ExtractFileData(string file, ConcurrentBag<string> fullRawData)
-        {
-            while (FileIsLocked(file))            
-                Thread.Sleep(300);            
-
-            using (var fileStream = File.OpenRead(file))
-            using (var streamReader = new StreamReader(fileStream, Encoding.UTF8, true, Convert.ToInt32(ConfigurationManager.AppSettings["bufferSize"])))
-            {
-                string line;
-                while ((line = streamReader.ReadLine()) != null)
-                    fullRawData.Add(line.Trim());
-            }
-        }
-
         public void SaveReport(IEnumerable<string> report)
         {
             StringBuilder stringbuilder = new StringBuilder();
@@ -48,6 +34,20 @@ namespace Infra
             }
 
             File.WriteAllText(FolderPath.GetOutFolderPath() + "\\report.done.dat", stringbuilder.ToString());
+        }
+
+        private void ExtractFileData(string file, ConcurrentBag<string> fullRawData)
+        {
+            while (FileIsLocked(file))
+                Thread.Sleep(300);
+
+            using (var fileStream = File.OpenRead(file))
+            using (var streamReader = new StreamReader(fileStream, Encoding.UTF8, true, Convert.ToInt32(ConfigurationManager.AppSettings["bufferSize"])))
+            {
+                string line;
+                while ((line = streamReader.ReadLine()) != null)
+                    fullRawData.Add(line.Trim());
+            }
         }
 
         private bool FileIsLocked(string file)

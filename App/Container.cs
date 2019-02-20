@@ -1,5 +1,4 @@
-﻿using App;
-using Autofac;
+﻿using Autofac;
 using Infra;
 
 namespace App
